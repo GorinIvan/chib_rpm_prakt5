@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Breeds</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Breeds')}"></head>
 <body>
-<h1>Breeds</h1>
-<a th:href="@{/}">На главную</a> | <a th:href="@{/breeds/create}">Добавить Breed</a>
-<table border="1">
-    <tr><th>ID</th><th>Name</th><th>Description</th></tr>
-    <tr th:each="breed : ${breeds}">
-        <td th:text="${breed.id}"></td>
-        <td th:text="${breed.name}"></td>
-        <td th:text="${breed.description}"></td>
-    </tr>
-</table>
+<div th:replace="~{fragments/layout :: siteHeader('Breeds')}"></div>
+<main class="container page-content">
+    <div class="page-actions">
+        <a class="button" th:href="@{/breeds/create}">Добавить Breed</a>
+    </div>
+    <div class="table-card">
+        <table>
+            <thead>
+            <tr><th>ID</th><th>Name</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="breed : ${breeds}">
+                <td th:text="${breed.id}"></td>
+                <td th:text="${breed.name}"></td>
+                <td th:text="${breed.description}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>

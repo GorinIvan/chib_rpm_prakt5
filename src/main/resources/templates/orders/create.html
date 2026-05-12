@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Order</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Create Order')}"></head>
 <body>
-<h1>Create Order</h1>
-<a th:href="@{/orders}">Назад</a>
-<form th:action="@{/orders/create}" method="post">
-    <div>User:
-        <select name="userId" required>
-            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
-        </select>
+<div th:replace="~{fragments/layout :: siteHeader('Create Order')}"></div>
+<main class="container page-content">
+    <div class="form-card">
+        <form class="form-grid" th:action="@{/orders/create}" method="post">
+            <div class="form-row">
+                <label for="userId">Customer</label>
+                <select id="userId" name="userId" required>
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="orderStatus">Order status</label>
+                <input id="orderStatus" type="text" name="orderStatus">
+            </div>
+            <div class="form-row">
+                <label for="totalAmount">Total amount</label>
+                <input id="totalAmount" type="number" step="0.01" name="totalAmount">
+            </div>
+            <div class="form-row">
+                <label for="orderDate">Order date</label>
+                <input id="orderDate" type="datetime-local" name="orderDate">
+            </div>
+            <div class="form-row">
+                <label for="paymentMethod">Payment method</label>
+                <input id="paymentMethod" type="text" name="paymentMethod">
+            </div>
+            <div class="form-row">
+                <label for="paymentStatus">Payment status</label>
+                <input id="paymentStatus" type="text" name="paymentStatus">
+            </div>
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/orders}">Назад</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
     </div>
-    <div>Order status: <input type="text" name="orderStatus"></div>
-    <div>Total amount: <input type="number" step="0.01" name="totalAmount"></div>
-    <div>Order date: <input type="datetime-local" name="orderDate"></div>
-    <div>Payment method: <input type="text" name="paymentMethod"></div>
-    <div>Payment status: <input type="text" name="paymentStatus"></div>
-    <button type="submit">Save</button>
-</form>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>

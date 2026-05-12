@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Order Item</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Create Order Item')}"></head>
 <body>
-<h1>Create Order Item</h1>
-<a th:href="@{/order-items}">Назад</a>
-<form th:action="@{/order-items/create}" method="post">
-    <div>Order:
-        <select name="orderId" required>
-            <option th:each="order : ${orders}" th:value="${order.id}" th:text="${'Order #' + order.id + ' (' + (order.user != null ? order.user.username : 'no user') + ')'}"></option>
-        </select>
+<div th:replace="~{fragments/layout :: siteHeader('Create Order Item')}"></div>
+<main class="container page-content">
+    <div class="form-card">
+        <form class="form-grid" th:action="@{/order-items/create}" method="post">
+            <div class="form-row">
+                <label for="orderId">Order</label>
+                <select id="orderId" name="orderId" required>
+                    <option th:each="order : ${orders}" th:value="${order.id}" th:text="${'Order #' + order.id + ' (' + (order.user != null ? order.user.username : 'без клиента') + ')'}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="catId">Cat</label>
+                <select id="catId" name="catId" required>
+                    <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" type="number" min="1" name="quantity" required>
+            </div>
+            <div class="form-row">
+                <label for="priceAtPurchase">Price at purchase</label>
+                <input id="priceAtPurchase" type="number" step="0.01" name="priceAtPurchase">
+            </div>
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/order-items}">Назад</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
     </div>
-    <div>Cat:
-        <select name="catId" required>
-            <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
-        </select>
-    </div>
-    <div>Quantity: <input type="number" min="1" name="quantity" required></div>
-    <div>Price at purchase: <input type="number" step="0.01" name="priceAtPurchase"></div>
-    <button type="submit">Save</button>
-</form>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>

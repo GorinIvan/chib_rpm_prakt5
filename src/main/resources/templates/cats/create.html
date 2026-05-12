@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Cat</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Create Cat')}"></head>
 <body>
-<h1>Create Cat</h1>
-<a th:href="@{/cats}">Назад</a>
-<form th:action="@{/cats/create}" method="post">
-    <div>Name: <input type="text" name="name" required></div>
-    <div>Birth date: <input type="date" name="birthDate"></div>
-    <div>Color: <input type="text" name="color"></div>
-    <div>Pedigree: <input type="text" name="pedigree"></div>
-    <div>Price: <input type="number" step="0.01" name="price"></div>
-    <div>Status: <input type="text" name="status"></div>
-    <div>Breed:
-        <select name="breedId" required>
-            <option th:each="breed : ${breeds}" th:value="${breed.id}" th:text="${breed.name}"></option>
-        </select>
+<div th:replace="~{fragments/layout :: siteHeader('Create Cat')}"></div>
+<main class="container page-content">
+    <div class="form-card">
+        <form class="form-grid" th:action="@{/cats/create}" method="post">
+            <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" required>
+            </div>
+            <div class="form-row">
+                <label for="birthDate">Birth date</label>
+                <input id="birthDate" type="date" name="birthDate">
+            </div>
+            <div class="form-row">
+                <label for="color">Color</label>
+                <input id="color" type="text" name="color">
+            </div>
+            <div class="form-row">
+                <label for="pedigree">Pedigree</label>
+                <input id="pedigree" type="text" name="pedigree">
+            </div>
+            <div class="form-row">
+                <label for="price">Price</label>
+                <input id="price" type="number" step="0.01" name="price">
+            </div>
+            <div class="form-row">
+                <label for="status">Status</label>
+                <input id="status" type="text" name="status">
+            </div>
+            <div class="form-row">
+                <label for="breedId">Breed</label>
+                <select id="breedId" name="breedId" required>
+                    <option th:each="breed : ${breeds}" th:value="${breed.id}" th:text="${breed.name}"></option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/cats}">Назад</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
     </div>
-    <button type="submit">Save</button>
-</form>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>
