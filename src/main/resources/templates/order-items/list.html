@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Order Items</title></head>
+<body>
+<h1>Order Items</h1>
+<a th:href="@{/}">На главную</a> | <a th:href="@{/order-items/create}">Добавить Order Item</a>
+<table border="1">
+    <tr><th>ID</th><th>Order</th><th>Cat</th><th>Quantity</th><th>Price at purchase</th></tr>
+    <tr th:each="item : ${orderItems}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.order != null ? 'Order #' + item.order.id + ' (' + (item.order.user != null ? item.order.user.username : 'no user') + ')' : ''}"></td>
+        <td th:text="${item.cat != null ? item.cat.name : ''}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.priceAtPurchase}"></td>
+    </tr>
+</table>
+</body>
+</html>

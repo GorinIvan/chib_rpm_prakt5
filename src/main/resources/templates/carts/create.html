@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Create Cart</title></head>
+<body>
+<h1>Create Cart</h1>
+<a th:href="@{/carts}">Назад</a>
+<form th:action="@{/carts/create}" method="post">
+    <div>User:
+        <select name="userId" required>
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+        </select>
+    </div>
+    <div>Created at: <input type="datetime-local" name="createdAt"></div>
+    <div>Updated at: <input type="datetime-local" name="updatedAt"></div>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
