@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Cart Item</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Create Cart Item')}"></head>
 <body>
-<h1>Create Cart Item</h1>
-<a th:href="@{/cart-items}">Назад</a>
-<form th:action="@{/cart-items/create}" method="post">
-    <div>Cart:
-        <select name="cartId" required>
-            <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${'Cart #' + cart.id + ' (' + (cart.user != null ? cart.user.username : 'no user') + ')'}"></option>
-        </select>
+<div th:replace="~{fragments/layout :: siteHeader('Create Cart Item')}"></div>
+<main class="container page-content">
+    <div class="form-card">
+        <form class="form-grid" th:action="@{/cart-items/create}" method="post">
+            <div class="form-row">
+                <label for="cartId">Cart</label>
+                <select id="cartId" name="cartId" required>
+                    <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${'Cart #' + cart.id + ' (' + (cart.user != null ? cart.user.username : 'без владельца') + ')'}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="catId">Cat</label>
+                <select id="catId" name="catId" required>
+                    <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" type="number" min="1" name="quantity" required>
+            </div>
+            <div class="form-row">
+                <label for="addedAt">Added at</label>
+                <input id="addedAt" type="datetime-local" name="addedAt">
+            </div>
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/cart-items}">Назад</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
     </div>
-    <div>Cat:
-        <select name="catId" required>
-            <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
-        </select>
-    </div>
-    <div>Quantity: <input type="number" min="1" name="quantity" required></div>
-    <div>Added at: <input type="datetime-local" name="addedAt"></div>
-    <button type="submit">Save</button>
-</form>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>

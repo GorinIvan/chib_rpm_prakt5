@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="pageHead(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title + ' | Cat Shop'}">Cat Shop</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header" th:fragment="siteHeader(pageTitle)">
+    <div class="container site-header__inner">
+        <div>
+            <a class="site-brand" th:href="@{/breeds}">Cat Shop</a>
+            <p class="site-subtitle">Простой учебный интерфейс для списка сущностей и форм создания.</p>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <a th:href="@{/breeds}">Breeds</a>
+            <a th:href="@{/cats}">Cats</a>
+            <a th:href="@{/carts}">Carts</a>
+            <a th:href="@{/cart-items}">Cart Items</a>
+            <a th:href="@{/orders}">Orders</a>
+            <a th:href="@{/order-items}">Order Items</a>
+        </nav>
+    </div>
+    <div class="container page-header">
+        <h1 th:text="${pageTitle}">Page title</h1>
+    </div>
+</header>
+
+<footer class="site-footer" th:fragment="siteFooter">
+    <div class="container">
+        <p>Spring Boot + Thymeleaf demo project.</p>
+    </div>
+</footer>
+</body>
+</html>

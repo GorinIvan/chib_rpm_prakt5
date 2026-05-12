@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Cart</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Create Cart')}"></head>
 <body>
-<h1>Create Cart</h1>
-<a th:href="@{/carts}">Назад</a>
-<form th:action="@{/carts/create}" method="post">
-    <div>User:
-        <select name="userId" required>
-            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
-        </select>
+<div th:replace="~{fragments/layout :: siteHeader('Create Cart')}"></div>
+<main class="container page-content">
+    <div class="form-card">
+        <form class="form-grid" th:action="@{/carts/create}" method="post">
+            <div class="form-row">
+                <label for="userId">Owner</label>
+                <select id="userId" name="userId" required>
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="createdAt">Created at</label>
+                <input id="createdAt" type="datetime-local" name="createdAt">
+            </div>
+            <div class="form-row">
+                <label for="updatedAt">Updated at</label>
+                <input id="updatedAt" type="datetime-local" name="updatedAt">
+            </div>
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/carts}">Назад</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
     </div>
-    <div>Created at: <input type="datetime-local" name="createdAt"></div>
-    <div>Updated at: <input type="datetime-local" name="updatedAt"></div>
-    <button type="submit">Save</button>
-</form>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>

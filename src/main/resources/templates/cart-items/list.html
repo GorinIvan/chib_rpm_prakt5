@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Cart Items</title></head>
+<head th:replace="~{fragments/layout :: pageHead('Cart Items')}"></head>
 <body>
-<h1>Cart Items</h1>
-<a th:href="@{/}">На главную</a> | <a th:href="@{/cart-items/create}">Добавить Cart Item</a>
-<table border="1">
-    <tr><th>ID</th><th>Cart</th><th>Cat</th><th>Quantity</th><th>Added at</th></tr>
-    <tr th:each="item : ${cartItems}">
-        <td th:text="${item.id}"></td>
-        <td th:text="${item.cart != null ? 'Cart #' + item.cart.id + ' (' + (item.cart.user != null ? item.cart.user.username : 'no user') + ')' : ''}"></td>
-        <td th:text="${item.cat != null ? item.cat.name : ''}"></td>
-        <td th:text="${item.quantity}"></td>
-        <td th:text="${item.addedAt}"></td>
-    </tr>
-</table>
+<div th:replace="~{fragments/layout :: siteHeader('Cart Items')}"></div>
+<main class="container page-content">
+    <div class="page-actions">
+        <a class="button" th:href="@{/cart-items/create}">Добавить Cart Item</a>
+    </div>
+    <div class="table-card">
+        <table>
+            <thead>
+            <tr><th>ID</th><th>Cart</th><th>Cat</th><th>Quantity</th><th>Added at</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${cartItems}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.cart != null ? 'Cart #' + item.cart.id + ' (' + (item.cart.user != null ? item.cart.user.username : 'без владельца') + ')' : ''}"></td>
+                <td th:text="${item.cat != null ? item.cat.name : ''}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.addedAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:replace="~{fragments/layout :: siteFooter}"></div>
 </body>
 </html>
