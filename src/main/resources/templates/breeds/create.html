@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Create Breed</title></head>
+<body>
+<h1>Create Breed</h1>
+<a th:href="@{/breeds}">Назад</a>
+<form th:action="@{/breeds/create}" method="post">
+    <div>Name: <input type="text" name="name" required></div>
+    <div>Description: <input type="text" name="description"></div>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

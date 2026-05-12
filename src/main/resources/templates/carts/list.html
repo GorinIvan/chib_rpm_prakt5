@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Carts</title></head>
+<body>
+<h1>Carts</h1>
+<a th:href="@{/}">На главную</a> | <a th:href="@{/carts/create}">Добавить Cart</a>
+<table border="1">
+    <tr><th>ID</th><th>User</th><th>Created at</th><th>Updated at</th></tr>
+    <tr th:each="cart : ${carts}">
+        <td th:text="${cart.id}"></td>
+        <td th:text="${cart.user != null ? cart.user.username : ''}"></td>
+        <td th:text="${cart.createdAt}"></td>
+        <td th:text="${cart.updatedAt}"></td>
+    </tr>
+</table>
+</body>
+</html>

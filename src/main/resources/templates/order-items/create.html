@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Create Order Item</title></head>
+<body>
+<h1>Create Order Item</h1>
+<a th:href="@{/order-items}">Назад</a>
+<form th:action="@{/order-items/create}" method="post">
+    <div>Order:
+        <select name="orderId" required>
+            <option th:each="order : ${orders}" th:value="${order.id}" th:text="${'Order #' + order.id + ' (' + (order.user != null ? order.user.username : 'no user') + ')'}"></option>
+        </select>
+    </div>
+    <div>Cat:
+        <select name="catId" required>
+            <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
+        </select>
+    </div>
+    <div>Quantity: <input type="number" min="1" name="quantity" required></div>
+    <div>Price at purchase: <input type="number" step="0.01" name="priceAtPurchase"></div>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

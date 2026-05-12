@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Create Cart Item</title></head>
+<body>
+<h1>Create Cart Item</h1>
+<a th:href="@{/cart-items}">Назад</a>
+<form th:action="@{/cart-items/create}" method="post">
+    <div>Cart:
+        <select name="cartId" required>
+            <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${'Cart #' + cart.id + ' (' + (cart.user != null ? cart.user.username : 'no user') + ')'}"></option>
+        </select>
+    </div>
+    <div>Cat:
+        <select name="catId" required>
+            <option th:each="cat : ${cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
+        </select>
+    </div>
+    <div>Quantity: <input type="number" min="1" name="quantity" required></div>
+    <div>Added at: <input type="datetime-local" name="addedAt"></div>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Cats</title></head>
+<body>
+<h1>Cats</h1>
+<a th:href="@{/}">На главную</a> | <a th:href="@{/cats/create}">Добавить Cat</a>
+<table border="1">
+    <tr><th>ID</th><th>Name</th><th>Birth date</th><th>Color</th><th>Pedigree</th><th>Price</th><th>Status</th><th>Breed</th></tr>
+    <tr th:each="cat : ${cats}">
+        <td th:text="${cat.id}"></td>
+        <td th:text="${cat.name}"></td>
+        <td th:text="${cat.birthDate}"></td>
+        <td th:text="${cat.color}"></td>
+        <td th:text="${cat.pedigree}"></td>
+        <td th:text="${cat.price}"></td>
+        <td th:text="${cat.status}"></td>
+        <td th:text="${cat.breed != null ? cat.breed.name : ''}"></td>
+    </tr>
+</table>
+</body>
+</html>
