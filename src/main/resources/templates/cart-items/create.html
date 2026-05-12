@@ -9,7 +9,7 @@
             <div class="form-row">
                 <label for="cartId">Cart</label>
                 <select id="cartId" name="cartId" required>
-                    <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${'Cart #' + cart.id + ' (' + (cart.user != null ? cart.user.username : 'без владельца') + ')'}"></option>
+                    <option th:each="cart : ${carts}" th:value="${cart.id}" th:text="${'Cart #' + cart.id}"></option>
                 </select>
             </div>
             <div class="form-row">

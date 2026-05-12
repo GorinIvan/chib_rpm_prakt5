@@ -15,7 +15,7 @@
             <tbody>
             <tr th:each="item : ${orderItems}">
                 <td th:text="${item.id}"></td>
-                <td th:text="${item.order != null ? 'Order #' + item.order.id + ' (' + (item.order.user != null ? item.order.user.username : 'без клиента') + ')' : ''}"></td>
+                <td th:text="${item.order != null ? 'Order #' + item.order.id : ''}"></td>
                 <td th:text="${item.cat != null ? item.cat.name : ''}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td th:text="${item.priceAtPurchase}"></td>

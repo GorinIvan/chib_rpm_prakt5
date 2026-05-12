@@ -10,12 +10,11 @@
     <div class="table-card">
         <table>
             <thead>
-            <tr><th>ID</th><th>Customer</th><th>Status</th><th>Total</th><th>Order date</th><th>Payment method</th><th>Payment status</th></tr>
+            <tr><th>ID</th><th>Status</th><th>Total</th><th>Order date</th><th>Payment method</th><th>Payment status</th></tr>
             </thead>
             <tbody>
             <tr th:each="order : ${orders}">
                 <td th:text="${order.id}"></td>
-                <td th:text="${order.user != null ? order.user.username : ''}"></td>
                 <td th:text="${order.orderStatus}"></td>
                 <td th:text="${order.totalAmount}"></td>
                 <td th:text="${order.orderDate}"></td>
