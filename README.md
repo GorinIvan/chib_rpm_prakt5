@@ -20,4 +20,4 @@
    ```bash
    mvn spring-boot:run
    ```
-4. Откройте `http://localhost:8080/`.
+4. Откройте `http://localhost:8080/breeds`.

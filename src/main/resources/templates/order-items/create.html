@@ -9,7 +9,7 @@
             <div class="form-row">
                 <label for="orderId">Order</label>
                 <select id="orderId" name="orderId" required>
-                    <option th:each="order : ${orders}" th:value="${order.id}" th:text="${'Order #' + order.id + ' (' + (order.user != null ? order.user.username : 'без клиента') + ')'}"></option>
+                    <option th:each="order : ${orders}" th:value="${order.id}" th:text="${'Order #' + order.id}"></option>
                 </select>
             </div>
             <div class="form-row">

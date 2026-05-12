@@ -10,12 +10,11 @@
     <div class="table-card">
         <table>
             <thead>
-            <tr><th>ID</th><th>Owner</th><th>Created at</th><th>Updated at</th></tr>
+            <tr><th>ID</th><th>Created at</th><th>Updated at</th></tr>
             </thead>
             <tbody>
             <tr th:each="cart : ${carts}">
                 <td th:text="${cart.id}"></td>
-                <td th:text="${cart.user != null ? cart.user.username : ''}"></td>
                 <td th:text="${cart.createdAt}"></td>
                 <td th:text="${cart.updatedAt}"></td>
             </tr>
